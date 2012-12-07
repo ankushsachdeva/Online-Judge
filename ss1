@@ -1,0 +1,12 @@
+SetEnv HTTP_coderunning 1
+
+
+
+<FilesMatch "\.php">
+   order deny,allow
+    Allow from all
+</FilesMatch>
+
+
+
+deny from all

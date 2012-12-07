@@ -1,0 +1,8 @@
+<?php
+echo<<<EOHTML
+         <p> Demo of Test blog
+           Complete blog
+           asdasf
+           </p>
+EOHTML;
+?>
