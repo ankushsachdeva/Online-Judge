@@ -57,8 +57,9 @@ int main(int argc,char ** argv)
 				lim.rlim_cur+=29963000;//accomodating space for libraries 
 				lim.rlim_max=lim.rlim_cur;
 				setrlimit(RLIMIT_AS,&lim);
-				forklim.rlim_cur=0;
-				forklim.rlim_max=0;
+				forklim.rlim_cur=1000;
+				forklim.rlim_max=1000;
+				
 				setrlimit(RLIMIT_NPROC,&forklim);
 				execl("/usr/bin/python2.6","dummy",argv[1],(char *)0);
 			}
@@ -66,8 +67,8 @@ int main(int argc,char ** argv)
 				lim.rlim_cur+=4329900;//accomodating space for libraries 
 				lim.rlim_max=lim.rlim_cur;
 				setrlimit(RLIMIT_AS,&lim);
-				forklim.rlim_cur=0;
-				forklim.rlim_max=0;
+				forklim.rlim_cur=1000;
+				forklim.rlim_max=1000;
 				setrlimit(RLIMIT_NPROC,&forklim);
 				execl("java","dummy",argv[1],(char *)0);
 			}
@@ -75,8 +76,8 @@ int main(int argc,char ** argv)
 				lim.rlim_cur+=4329900;//accomodating space for libraries 
 				lim.rlim_max=lim.rlim_cur;
 				setrlimit(RLIMIT_AS,&lim);
-				forklim.rlim_cur=0;
-				forklim.rlim_max=0;
+				forklim.rlim_cur=1000;
+				forklim.rlim_max=1000;
 				setrlimit(RLIMIT_NPROC,&forklim);
 				execl(argv[1],(char *)0);
 			}
