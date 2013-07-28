@@ -1,7 +1,7 @@
 <?php
 //Print_r ($_SESSION);
 include("settings.php");
-$conn=mysql_connect($DB_IP,$DBUSER,$DBPASS);
+$conn=mysql_connect('localhost',$DBUSER,$DBPASS);
 $username=$_SESSION['username'];
 mysql_select_db($DBNAME,$conn);
 

@@ -5,7 +5,7 @@ include('settings.php');
 ?>
 
 <?php
-$cn = mysql_connect($DB_IP, $DBUSER, $DBPASS);
+$cn = mysql_connect('localhost', $DBUSER, $DBPASS);
 mysql_select_db($DBNAME, $cn);
 
 function TERMINATE() { echo "<meta http-equiv='Refresh' content='0; URL=status.php' />"; exit(0); }

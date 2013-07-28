@@ -21,7 +21,7 @@ include('settings.php');
 <div id="left">						
 <div class="entry">
 <?php
-$cn = mysql_connect($DB_IP, $DBUSER, $DBPASS);
+$cn = mysql_connect('localhost', $DBUSER, $DBPASS);
 mysql_select_db($DBNAME, $cn);
 
 $query = "select count(*) from blog";

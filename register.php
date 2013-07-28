@@ -95,7 +95,7 @@ $(document).ready(function(){
 <?php
 if(isset($_POST['rusername'])){
 
-	$cn = mysql_connect($DB_IP, $DBUSER, $DBPASS);
+	$cn = mysql_connect('localhost', $DBUSER, $DBPASS);
 	mysql_select_db($DBNAME, $cn);
 	
 
@@ -146,45 +146,37 @@ echo <<<EOHTML
 <div id="cform">
 <div class="error" id ="error" style="visibility:hidden;"></div>
 <table width= 100%>
-<tr>
+<tr class="altrow">
 <td>First Name</td>
 <td><input name="firstname" size=40% type="text" /></td>
 </tr>
-  
-<tr>
+<tr class="altrow">
 <td>Last Name </td>
 <td><input name="lastname" size="40%" type="text" /></td>
 </tr>
-  
-<tr>
+<tr class="altrow">
 <td>Username </td>
 <td><input name="rusername" size="40%" type="text" /></td>
 </tr>
-  
-<tr>
+<tr class="altrow">
 <td>Password </td>
 <td><input name="password" type="password" size="40%" /></td>
 </tr>
-  
-<tr>
+<tr class="altrow">
 <td>Confirm Password </td>
 <td><input name="cpassword" type="password" size="40%" /></td>
 </tr>
-  
-<tr>
+<tr class="altrow">
 <td>College </td>
 <td><input name="college" size="40%" type="text" /></td>
 </tr>
-  
-<tr>
+<tr class="altrow">
 <td>Email address</td>
 <td><input name="email" type="text" size="40%"></td>
 </tr>
-  
 </table>
-
 <div style="text-align : center;">
-<input class="submit" name="submit" type="submit" value="Submit" size="26%" style=" font-size:14px;" />
+<input class="button1" name="submit" type="submit" value="Submit" size="26%" style=" font-size:14px;" />
 
 
 </div>

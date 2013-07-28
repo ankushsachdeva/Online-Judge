@@ -1,7 +1,7 @@
 <?php
 include('settings.php');
 
-$cn = mysql_connect($DB_IP, $DBUSER, $DBPASS);
+$cn = mysql_connect('localhost', $DBUSER, $DBPASS);
 mysql_select_db($DBNAME, $cn);
 function validate($a,$b,$submID,$username){
     $query = "SELECT DATE_FORMAT(`endTime`,'%Y-%m-%d %T') AS endTime,DATE_FORMAT(`startTime`,'%Y-%m-%d %T') AS startTime FROM contests WHERE contestID=$a";
@@ -52,8 +52,7 @@ function rand_string( $length ) {
 $code=array(
 		"C++"=>"cpp",
 		"C"=>"c",
-		"python"=>"py",
-		"JAVA"=>"java"
+		"python"=>"py"
 	   );
 $cur_dir=getcwd();
 if($_SERVER["HTTP_coderunning"]==1){
@@ -113,25 +112,24 @@ elseif (strcmp($ext,'java')==0)$cmd="javac ";
 $current_score=0;
 $runtime=-1;
 $random=rand_string( 7 );
-if(strcmp($ext,'java')==0)$random="Main";
 //echo $random;
-exec("cp $destfile $chroot_dir/$submID".".".$ext);
+exec("sudo cp $destfile $chroot_dir/$submID".".".$ext);
 
 if(strcmp($ext,"py")){
 
 	//exec($cmd.$destfile." -o /var/www/newonj/submissions/$userid/exeble",$ouput,$verdict);
 
 
-	exec("$cur_dir/compiler $random $submID $ext $chroot_dir",$verdict,$output);
+	exec("sudo $cur_dir/compiler $random $submID $ext",$verdict,$output);
 	$verdict=file_exists("$chroot_dir/$random");
 	var_dump($verdict);
 	if(!$verdict)$verdict=1;//compilation error
 	else{
 		$destfile="/$random";
-		exec("cp $correctin $chroot_dir/$random.in");
+		exec("sudo cp $correctin $chroot_dir/$random.in");
 		$correctin="/$random.in";
 
-		exec("$cur_dir/judge $destfile $correctin $ext $runtimelimit $runmemlimit $random.out $chroot_dir", $output, $verdict);
+		exec("sudo $cur_dir/judge $destfile $correctin $ext $runtimelimit $runmemlimit $random.out", $output, $verdict);
 
 		$runtime=(int)($output[0]);
 		$runtime/=1000;
@@ -139,7 +137,7 @@ if(strcmp($ext,"py")){
 		$runmem/=1024;
 
 		if($verdict==0){
-			exec(" diff -w $chroot_dir/$random.out $correctout",$output,$verdict);
+			exec("sudo diff -w $chroot_dir/$random.out $correctout",$output,$verdict);
 
 			if($verdict!=0)$verdict=2;
 
@@ -156,9 +154,9 @@ else{
 	$runmemlimit*=2;//double memlimit for python
 	$runtimelimit*=2;//double time limit for python
 	$destfile="/$submID.py";
-	exec("cp $correctin $chroot_dir/$random.in");
+	exec("sudo cp $correctin $chroot_dir/$random.in");
 	$correctin="/$random.in";    
-	exec("$cur_dir/judge $destfile $correctin $ext $runtimelimit $runmemlimit $random.out",$output,$verdict);
+	exec("sudo $cur_dir/judge $destfile $correctin $ext $runtimelimit $runmemlimit $random.out",$output,$verdict);
 	echo $destfile;
 	var_dump ($output);
 	//echo "sudo diff -w $chroot_dir/$random.out $correctout";
@@ -169,7 +167,7 @@ else{
 
 
 	if($verdict==0){
-		exec("diff -w $chroot_dir/$random.out $correctout",$output,$verdict);
+		exec("sudo diff -w $chroot_dir/$random.out $correctout",$output,$verdict);
 		//echo $random;
 		if($verdict!=0)$verdict=2;
 
@@ -181,7 +179,7 @@ else{
 	else $verdict=5;
 }
 echo "Verdict is ".$verdict;
-//exec("rm $chroot_dir/$random $chroot_dir/$random.in $chroot_dir/$random.out $chroot_dir/$submID.$ext");  				   
+exec("sudo rm $chroot_dir/$random $chroot_dir/$random.in $chroot_dir/$random.out $chroot_dir/$submID.$ext");  				   
 if($verdict==0){
 	$query="UPDATE submissions SET status = $verdict,score=$current_score,runtime=$runtime,runmem=$runmem where submID = $submID";
 	mysql_query($query);

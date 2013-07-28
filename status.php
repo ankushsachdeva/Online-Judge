@@ -24,7 +24,7 @@ include('settings.php');
 
 <?php
 
-$cn=mysql_connect($DB_IP,$DBUSER,$DBPASS) or die(mysql_error());
+$cn=mysql_connect(localhost,$DBUSER,$DBPASS) or die(mysql_error());
 mysql_select_db($DBNAME,$cn);
 
 $query = "select count(*) from submissions";

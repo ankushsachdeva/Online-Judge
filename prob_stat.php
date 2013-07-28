@@ -16,7 +16,7 @@ if($_GET['flag']==1)
 	$sTime = $_POST['startTime'];
 	$eTime = $_POST['endTime'];
 
-	$conn = mysql_connect($DB_IP,$DBUSER,$DBPASS);
+	$conn = mysql_connect('localhost',$DBUSER,$DBPASS);
 	mysql_select_db($DBNAME,$conn);
 	$query = "insert into contests (Name, startTime, endTime) values ('$cname', '$sTime', '$eTime')";
 	$logged = mysql_query($query);
@@ -40,7 +40,7 @@ if(isset($_POST['statement']))
 	$time = $_POST['time'];
 	$memory = $_POST['memory'];
 	//$pid = $_GET['i'];
-	$conn = mysql_connect($DB_IP,$DBUSER,$DBPASS);
+	$conn = mysql_connect('localhost',$DBUSER,$DBPASS);
 	mysql_select_db($DBNAME,$conn);
 	$sql = "select * from contests where Name='$cname'";
 	$r = mysql_query($sql);

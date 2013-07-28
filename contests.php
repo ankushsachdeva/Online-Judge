@@ -14,7 +14,7 @@ include('settings.php');
 <script type="text/javascript" src="countdown.js">
 </script>		
 <?php include('header.php');
-$conn= mysql_connect($DB_IP,$DBUSER,$DBPASS);
+$conn= mysql_connect('localhost',$DBUSER,$DBPASS);
 mysql_select_db($DBNAME,$conn);
 ?>
 

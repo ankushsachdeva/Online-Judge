@@ -29,7 +29,7 @@ if(!isset($_GET['contestID'])){
 		<th>Rank</th><th>Username</th><th>Score</th>
 		</tr>';
 
-	$cn = mysql_connect($DB_IP, $DBUSER, $DBPASS);
+	$cn = mysql_connect('localhost', $DBUSER, $DBPASS);
 	mysql_select_db($DBNAME, $cn);
 	$query = "select username,score from `users` order by score DESC , penalty ASC";
 	$logged = mysql_query($query);
@@ -46,7 +46,7 @@ if(!isset($_GET['contestID'])){
 }
 else{   
 	$contestID=intval($_GET['contestID']);
-	$cn = mysql_connect($DB_IP, $DBUSER, $DBPASS);
+	$cn = mysql_connect('localhost', $DBUSER, $DBPASS);
 	mysql_select_db($DBNAME, $cn);
 	$query = "select Name from `contests` where contestID=$contestID ";
 	$logged = mysql_query($query);

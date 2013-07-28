@@ -1,7 +1,7 @@
 <?php
 session_start();
 include('settings.php');
-$cn = mysql_connect($DB_IP, $DBUSER, $DBPASS);
+$cn = mysql_connect('localhost', $DBUSER, $DBPASS);
 mysql_select_db($DBNAME, $cn);
 
 if(isset($_POST['comment']) && isset($_POST['problemID'])){

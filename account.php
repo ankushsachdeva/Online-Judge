@@ -55,7 +55,7 @@ if($_SESSION['isloggedin']!=1)exit(0);
 </script>		
 	<?php include('header.php');
 	        
-	$conn= mysql_connect($DB_IP,$DBUSER,$DBPASS);
+	$conn= mysql_connect('localhost',$DBUSER,$DBPASS);
     mysql_select_db($DBNAME,$conn);
         
     ?>

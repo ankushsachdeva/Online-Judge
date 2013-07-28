@@ -12,9 +12,8 @@ $DBPASS = 'passwd';
 //The name of the database
 $DBNAME = 'onj';
 //chroot directory
-$chroot_dir="/home/dell/chroot";
-//use penalties for late submission?(1 for yes, 0 for no )
+$chroot_dir="/var/chroot";
+//use penalties for late submmistion?(1 for yes, 0 for no )
 $late_penalty=1;
-$DB_IP='localhost';
 
 ?>

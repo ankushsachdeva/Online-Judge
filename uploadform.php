@@ -32,7 +32,7 @@
 	if($good == false)
 		$problemid = 1;
 
-	$cn = mysql_connect($DB_IP, $DBUSER, $DBPASS);
+	$cn = mysql_connect('localhost', $DBUSER, $DBPASS);
 	mysql_select_db($DBNAME, $cn);
 
 	$status = 0;

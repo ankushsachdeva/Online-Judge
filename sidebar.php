@@ -8,7 +8,7 @@ if($_POST['signup']){
 }
 session_start();
 if(isset($_POST['username'])and $_SESSION['isloggedin']!=1){
-	$cn = mysql_connect($DB_IP, $DBUSER, $DBPASS);
+	$cn = mysql_connect('localhost', $DBUSER, $DBPASS);
 	mysql_select_db($DBNAME, $cn);
 	$username = mysql_real_escape_string($_POST['username']);
 	$password = mysql_real_escape_string($_POST['password']);
@@ -65,7 +65,7 @@ else{
 </tr>
 
 <?php			
-$cn = mysql_connect($DB_IP, $DBUSER, $DBPASS);
+$cn = mysql_connect('localhost', $DBUSER, $DBPASS);
 mysql_select_db(onj, $cn);
 $query = "select username,score from `users` order by score DESC limit 5 ";
 $logged = mysql_query($query);

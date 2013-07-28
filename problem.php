@@ -14,7 +14,7 @@ include('settings.php');
 <script type="text/javascript" src="countdown.js"></script>		
 <?php include('header.php');
 
-$conn= mysql_connect($DB_IP,$DBUSER,$DBPASS);
+$conn= mysql_connect('localhost',$DBUSER,$DBPASS);
 mysql_select_db($DBNAME,$conn);?>
 
 <div id="content-outer" class="clear">
@@ -98,7 +98,6 @@ else
 			<option value="c">C</option>
 			<option value="cpp">C++</option>
 			<option value="py">Python</option>
-			<option value="java">JAVA</option>
 			</select>
 			<input type="hidden" value='.$_GET['problemID'].' name="problemID">
 			<input class="button" type="submit" name="submit" value="Submit" />

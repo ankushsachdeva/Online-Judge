@@ -35,7 +35,7 @@ include('settings.php');
 
 
 
-$cn = mysql_connect($DB_IP, $DBUSER, $DBPASS);
+$cn = mysql_connect('localhost', $DBUSER, $DBPASS);
 mysql_select_db($DBNAME, $cn);
 $query="SELECT * from problems where problemID= ".$_POST['problemID'];
 $logged=mysql_query($query);
@@ -93,7 +93,7 @@ $logged = mysql_query($query);
 $logg = mysql_fetch_array($logged);
 $submID=$logg['subID'];
 mkdir("/var/www/newonj/submissions/".$userid, 0700);
-move_uploaded_file($_FILES["file"]["tmp_name"],getcwd()."/submissions/$userid/$submID".".".$ext);
+move_uploaded_file($_FILES["file"]["tmp_name"],"/var/www/newonj/submissions/$userid/$submID".".".$ext);
 
 ?>
 <meta http-equiv='Refresh' content='0; URL=status.php' />	

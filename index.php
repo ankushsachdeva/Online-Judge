@@ -28,10 +28,10 @@
 
 <?php
 
+//<script src="http://l.yimg.com/a/i/us/pps/mapbadge_1.5.js">{"pipe_id":"1b24d69045fbb81d728903f9054452f9","_btype":"map","pipe_params":{"JobTitle":"mechanic","location":"San Francisco, CA","Distance":"50"}}</script>
 
 
-
-$cn = mysql_connect($DB_IP, $DBUSER, $DBPASS);
+$cn = mysql_connect('localhost', $DBUSER, $DBPASS);
 mysql_select_db($DBNAME, $cn);
 
 $query = "select count(*) from blog";

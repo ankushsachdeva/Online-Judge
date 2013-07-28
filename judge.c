@@ -43,8 +43,11 @@ int main(int argc,char ** argv)
 			struct rlimit lim,forklim;        
 			lim.rlim_cur=atoi(argv[5])*1024*1024;
 			lim.rlim_max=lim.rlim_cur;
-			chdir(argv[6]);
-			
+			chdir("/var/chroot");
+			if (chroot("/var/chroot") != 0) {
+				printf("chroot /var/chroot");
+				return 1;
+			}
 			output=open(argv[6],O_CREAT|O_TRUNC|O_RDWR,S_IXUSR|S_IRUSR|S_IWUSR|S_IXOTH|S_IROTH|S_IWOTH);
 			input=open(argv[2],O_RDWR);
 
@@ -57,27 +60,17 @@ int main(int argc,char ** argv)
 				lim.rlim_cur+=29963000;//accomodating space for libraries 
 				lim.rlim_max=lim.rlim_cur;
 				setrlimit(RLIMIT_AS,&lim);
-				forklim.rlim_cur=1000;
-				forklim.rlim_max=1000;
-				
+				forklim.rlim_cur=0;
+				forklim.rlim_max=0;
 				setrlimit(RLIMIT_NPROC,&forklim);
 				execl("/usr/bin/python2.6","dummy",argv[1],(char *)0);
-			}
-			else if(!strcmp(argv[3],"java")){
-				lim.rlim_cur+=4329900;//accomodating space for libraries 
-				lim.rlim_max=lim.rlim_cur;
-				setrlimit(RLIMIT_AS,&lim);
-				forklim.rlim_cur=1000;
-				forklim.rlim_max=1000;
-				setrlimit(RLIMIT_NPROC,&forklim);
-				execl("java","dummy",argv[1],(char *)0);
 			}
 			else{
 				lim.rlim_cur+=4329900;//accomodating space for libraries 
 				lim.rlim_max=lim.rlim_cur;
 				setrlimit(RLIMIT_AS,&lim);
-				forklim.rlim_cur=1000;
-				forklim.rlim_max=1000;
+				forklim.rlim_cur=0;
+				forklim.rlim_max=0;
 				setrlimit(RLIMIT_NPROC,&forklim);
 				execl(argv[1],(char *)0);
 			}

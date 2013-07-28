@@ -2,7 +2,7 @@
 <?php
 session_start();
 include('settings.php');
-$cn=mysqli_connect($DB_IP,$DBUSER,$DBPASS,$DBNAME) ;
+$cn=mysqli_connect(localhost,$DBUSER,$DBPASS,$DBNAME) ;
 
 if(!isset($_GET['username'])) $username = $_SESSION['username'];						
 else $username = mysqli_real_escape_string($cn,$_GET['username']);
@@ -38,7 +38,7 @@ if(!isset($username)){
 <!-- wrap starts here -->
 <div id="wrap">			
 <?php include('header.php');
-$cn=mysql_connect($DB_IP,$DBUSER,$DBPASS) or die(mysql_error());
+$cn=mysql_connect(localhost,$DBUSER,$DBPASS) or die(mysql_error());
 mysql_select_db($DBNAME,$cn);
 if(isset($_GET['username'])){
 	$query = "select * from users where username='$username'";
