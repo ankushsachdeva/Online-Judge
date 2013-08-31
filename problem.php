@@ -75,8 +75,10 @@ else
 	$query = "SELECT * FROM contests WHERE contestID = ".$r['contestID'].";";
     $res = mysql_query($query);
    	$res= mysql_fetch_array($res);
-   	$ctime = new DateTime(date('Y-m-d H:i:s'));
-   	if($res['startTime']>$ctime){ 
+   	$res= mysql_fetch_array($res);
+        $d1 = new DateTime($res['startTime']);
+        $current = new DateTime(date('Y-m-d H:i:s'));
+if($d1>$current){  
    	    echo "<meta http-equiv='Refresh' content='4; URL=problem.php' />	";
    	    exit(0);
    	}
